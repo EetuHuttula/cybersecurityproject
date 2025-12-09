@@ -5,11 +5,12 @@ notes_bp = Blueprint('notes', __name__)
 
 @notes_bp.route("/new")
 def new():
+    # CSRF token generation vulnerability 
     return render_template("new.html")
 
 @notes_bp.route("/send", methods=["POST"])
 def send():
-    # SQL INJECTION VULNERABILITY + CSRF vulnerability
+    # SQL INJECTION VULNERABILITY
     message = request.form["content"]
     user_id = session.get("user_id")
     if not user_id:
@@ -38,11 +39,25 @@ def note_detail(note_id):
     return render_template("note_detail.html", note=note)
 
 # FIXED VERSION (commented):
+
+
+
+# from flask import Blueprint, render_template, request, redirect, session
+# import sqlite3
+# from .secret import generate_csrf_token, validate_csrf_token
+# notes_bp = Blueprint('notes', __name__)
+
+# @notes_bp.route("/new")
+# def new():
+#     # Generate CSRF token and pass to template
+#     csrf_token = generate_csrf_token()
+#     return render_template("new.html", csrf_token=csrf_token)
+#
 # @notes_bp.route("/send", methods=["POST"])
 # def send():
-#     csrf_token = request.form.get('csrf_token')
-#     if not csrf_token or csrf_token != session.get('csrf_token'):
-#         return "CSRF token missing or invalid", 400
+# csrf_token = request.form.get('csrf_token')
+#    if not validate_csrf_token(session.get('csrf_token'), csrf_token):
+#        return "CSRF token missing or invalid", 400
 #     message = request.form["content"]
 #     user_id = session.get("user_id")
 #     if not user_id:

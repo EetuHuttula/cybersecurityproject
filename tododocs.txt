@@ -1,0 +1,5 @@
+CSRF (tehty) - routes/notes.py (/send route)
+injection (tehty) - routes/notes.py (/send route with SQL injection in INSERT)
+broken access control (tehty) - routes/notes.py (/notes/<id> route), routes/admin.py (/admin route)
+identification and authentication failures (tehty) - routes/auth.py (/login route, no password check)
+security misconfiguration (tehty) - app.py (weak secret key, debug=True)

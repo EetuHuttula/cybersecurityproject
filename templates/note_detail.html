@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Note Detail</title>
+</head>
+<body>
+  <h1>Note Detail</h1>
+  
+  {% if note %}
+    <p><strong>Username:</strong> {{ note['username'] }}</p>
+    <p><strong>Note:</strong> {{ note['note'] }}</p>
+    <a href="/">delete</a>
+  {% else %}
+    <p>Note not found.</p>
+  {% endif %}
+  <a href="/">Back to Home</a>
+</body>
+</html>

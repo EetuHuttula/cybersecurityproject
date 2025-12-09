@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Viestin lähetys</title>
+</head>
+
+<body>
+  <form action="/send" method="post">
+    <!-- CSRF protection token-->
+    <!-- <input type="hidden" name="csrf_token" value="{{ csrf_token }}"> -->
+    <p>
+      Viesti: <br />
+      <textarea name="content" rows="3" cols="40"></textarea>
+    </p>
+    <p>
+      <input type="submit" value="Lähetä" />
+    </p>
+    <p>
+      <a href="/">Takaisin etusivulle</a>
+    </p>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Etusivu</title>
+</head>
+
+<body>
+  <div>Welcome, {{ user }}!
+    <p> 
+      {% if user != "admin" %}
+      <a href="/admin" style="visibility: hidden;">admin page</a>
+      {% else %}
+      <a href="/admin">admin page</a>
+      {% endif %}
+    </p>
+  </div>
+  <hr />
+  {% if notes %}
+    {% for note in notes %}
+    <p>
+      <strong>{{ note['username'] }}</strong>: <a href="/notes/{{ note['id'] }}">{{ note['note'] }}</a>
+    </p>
+    <hr />
+    {% endfor %}
+  {% else %}
+    <p>No notes yet.</p>
+    <hr />
+  {% endif %}
+
+  <p>
+    <a href="/new">Lähetä viesti</a>
+  </p>
+  <p>
+    <a href="/logout">logout</a>
+  </p>
+</body>
+
+</html>

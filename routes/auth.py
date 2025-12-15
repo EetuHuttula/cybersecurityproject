@@ -26,6 +26,9 @@ def logout():
     return redirect("/login")
 
 # FIXED VERSION (commented):
+# from flask import Blueprint, render_template, request, redirect, session
+# from werkzeug.security import check_password_hash
+# import sqlite3
 # @auth_bp.route("/login", methods=["GET", "POST"])
 # def login():
 #     csrf_token = request.form.get('csrf_token')
@@ -34,14 +37,15 @@ def logout():
 #             return "CSRF token missing or invalid", 400
 #         username = request.form["username"]
 #         password = request.form["password"]
-#         db = sqlite3.connect("database.db")
-#         user = db.execute("SELECT id, role FROM users WHERE username = ? AND password = ?;", (username, password)).fetchone()
-#         db.close()
-#         if user:
-#             session["user_id"] = user[0]
-#             session["username"] = username
-#             session["role"] = user[1]
-#             return redirect("/")
-#         else:
-#             return "Invalid credentials", 401
+#        db = sqlite3.connect("database.db")
+#        user = db.execute("SELECT id, role, password FROM users WHERE username = ?;", (username,)).fetchone()
+#        db.close()
+#        if user and check_password_hash(user[1], password):
+#            session["user_id"] = user[0]
+#            session["username"] = username
+#            session["role"] = user[1]
+#           return redirect("/")
+#        else:
+#            return "invalid credentials", 401
 #     return render_template("login.html")
+
